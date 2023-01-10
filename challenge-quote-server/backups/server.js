@@ -26,6 +26,17 @@ app.get('/quotes/random',(req,res)=>{
   res.json(randomquotes)
 })
 
+app.get('/quotes/search',(req,res)=>{
+
+res.json(Quotes.filter(item=>item.quote.toLocaleLowerCase().includes(req.query.term.toLocaleLowerCase())))
+
+})
+
+
+
+
+
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
