@@ -16,9 +16,8 @@ app.use(express.json())
 app.get('/list',(req,res)=>{
   res.send(people)
 })
-app.listen(9090,(req,res)=>{
-  console.log('server is listening on port 9090')
-})
+
+
 app.get("/list/:name",(req,res)=>{
   const person=people.find(el=>el.name===req.params.name)
    if (person) {
@@ -28,11 +27,16 @@ app.get("/list/:name",(req,res)=>{
    }
  })
  app.delete('/list/:name',function(req,res){
-  let name=req.params.name
-  let deleted=people.findIndex(item=>item.name===name)
- if (deleted) {
-     res.send(people.splice(deleted,1))
+  let name=(req.params.name)
+  // let index=people.findIndex(item=>item.name===name)
+  // let deleted=people.splice(index,1)
+  let filtered=people.filter(item=>item.name!==name)
+ if (filtered) {
+     res.send(filtered)
    } else{
       res.status(404).send("Error")
    }
+})
+app.listen(2500,(req,res)=>{
+  console.log('the server is running')
 })
