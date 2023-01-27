@@ -37,22 +37,7 @@ app.get("/list/:name",(req,res)=>{
       res.status(404).send("Error")
    }
 })
-app.put('/list/:name',(req,res)=>{
-  let name=req.params.name
-  
-  let body=req.body;
-  let finditem=people.find(item=>item.name===name)
-  if(finditem!==undefined){finditem.name=body.name
-                         res.status(200).send(people)}
-                         else{
-                            let obj={...req.body}
-                            people.push(obj)
-                            res.status(201).send(people)
-                         }
-  
-  
-  
-})
+
 
 
 
