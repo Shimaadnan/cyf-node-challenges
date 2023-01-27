@@ -2,7 +2,7 @@ const express=require('express')
 
 const app=express()
 
-const people=[
+let people=[
     {
       "name": "staff",
       "members": ["talea@techtonica.org", "michelle@techtonica.org"]
@@ -37,6 +37,27 @@ app.get("/list/:name",(req,res)=>{
       res.status(404).send("Error")
    }
 })
+app.put('/list/:name',(req,res)=>{
+  let name=req.params.name
+  
+  let body=req.body;
+  let finditem=people.find(item=>item.name===name)
+  if(finditem!==undefined){finditem.name=body.name
+                         res.status(200).send(people)}
+                         else{
+                            let obj={...req.body}
+                            people.push(obj)
+                            res.status(201).send(people)
+                         }
+  
+  
+  
+})
+
+
+
+
+
 app.listen(2500,(req,res)=>{
   console.log('the server is running')
 })
